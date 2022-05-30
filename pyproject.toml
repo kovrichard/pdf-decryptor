@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "pdf-decryptor"
+version = "0.1.0"
+description = "Remove password from PDF files"
+authors = ["Your Name <you@example.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+Flask = "^2.1.2"
+
+[tool.poetry.dev-dependencies]
+nose2 = "^0.11.0"
+black = "^22.3.0"
+isort = "^5.10.1"
+pytruth = "^1.1.0"
+autoflake = "^1.4"
+blinker = "^1.4"
+
+[tool.black]
+line-length = 79
+
+[tool.isort]
+multi_line_output = 3
+include_trailing_comma = true
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

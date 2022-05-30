@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form method="POST" action="{{ url_for('decrypt.decrypt') }}">
+    <input type="file" name="file">
+    <input type="submit" value="Decrypt">
+</form>
+{% endblock %}

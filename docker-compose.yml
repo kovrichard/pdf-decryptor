@@ -1,0 +1,15 @@
+version: '3'
+services:
+  pdf_decryptor:
+    environment:
+      FLASK_ENV: development
+      FLASK_APP: pdf_decryptor.server.factory:create_app
+      UPLOAD_FOLDER: /usr/src/app/uploads/
+    build: ./
+    image: pdf_decryptor
+    working_dir: /usr/src/app
+    volumes:
+      - ./:/usr/src/app/
+    ports:
+      - 8080:8080
+    command: poetry run flask run --host 0.0.0.0 --port 8080
