@@ -1,3 +1,5 @@
+import io
+
 from truth.truth import AssertThat
 
 from tests import AppTestCase, TemplateRenderMixin, TestClientMixin
@@ -7,5 +9,16 @@ class TestDecrypt(TestClientMixin, TemplateRenderMixin, AppTestCase):
     def test_decrypt_file_should_be_in_request(self):
         r = self.client.post("/decrypt/")
 
-        AssertThat(r.json["statusCode"]).IsEqualTo(400)
-        AssertThat(r.json["message"]).IsEqualTo("NOK")
+        _assert_bad_request(r)
+
+    def test_decrypt_no_file_is_not_allowed(self):
+        payload = {"file": (io.BytesIO(b"abcd"), "")}
+
+        r = self.client.post("/decrypt/", data=payload)
+
+        _assert_bad_request(r)
+
+
+def _assert_bad_request(msg):
+    AssertThat(msg.json["statusCode"]).IsEqualTo(400)
+    AssertThat(msg.json["message"]).IsEqualTo("NOK")
