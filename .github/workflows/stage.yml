@@ -1,0 +1,57 @@
+name: Tests
+
+on:
+  push:
+    branches: [ main ]
+
+env:
+  FLASK_ENV: production
+  UPLOAD_FOLDER: /usr/src/app/uploads/
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Set up Python 3.10.4
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.10.4
+      
+      - name: Install poetry
+        uses: dschep/install-poetry-action@v1.3
+        with:
+          version: 1.0.10
+      
+      - name: Configure poetry
+        run: |
+          poetry config virtualenvs.create true
+          poetry config virtualenvs.in-project true
+          poetry config cache-dir ~/.poetry
+          poetry config virtualenvs.path ~/.poetry/venv
+      
+      - name: Cache Poetry virtualenv
+        uses: actions/cache@v1
+        with:
+          path: ~/.poetry
+          key: ${{ runner.os }}-poetry-${{ hashFiles('poetry.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-poetry-
+
+      - name: Update and install dependencies
+        run: |
+          sudo apt-get -y update
+          sudo apt-get -y install curl gcc musl-dev qpdf
+          poetry install
+
+      - name: Run linter
+        run: |
+          poetry run autoflake --check --remove-all-unused-imports --ignore-init-module-imports --recursive pdf_decryptor tests
+          poetry run isort --check-only pdf_decryptor tests
+          poetry run black --check pdf_decryptor tests
+
+      - name: Run tests
+        run: poetry run nose2 -v
