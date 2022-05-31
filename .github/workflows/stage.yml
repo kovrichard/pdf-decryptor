@@ -6,7 +6,7 @@ on:
 
 env:
   FLASK_ENV: production
-  UPLOAD_FOLDER: /usr/src/app/tests/uploads/
+  UPLOAD_FOLDER: tests/uploads/
 
 jobs:
   build:
