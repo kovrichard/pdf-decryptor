@@ -69,6 +69,14 @@ python-versions = ">=3.7"
 toml = ["tomli"]
 
 [[package]]
+name = "ddt"
+version = "1.5.0"
+description = "Data-Driven/Decorated Tests"
+category = "dev"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "flask"
 version = "2.1.2"
 description = "A simple framework for building complex web applications."
@@ -223,7 +231,7 @@ watchdog = ["watchdog"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "32d37444868c011033f428115eb8c3760e60fa1a77575260715516c647df50eb"
+content-hash = "70de75502f3d939abf8bd80f7327f6c119d40e8c7543b7ba1d049b95c905a5b6"
 
 [metadata.files]
 autoflake = [
@@ -307,6 +315,10 @@ coverage = [
     {file = "coverage-6.4-cp39-cp39-win_amd64.whl", hash = "sha256:e35217031e4b534b09f9b9a5841b9344a30a6357627761d4218818b865d45055"},
     {file = "coverage-6.4-pp36.pp37.pp38-none-any.whl", hash = "sha256:e637ae0b7b481905358624ef2e81d7fb0b1af55f5ff99f9ba05442a444b11e45"},
     {file = "coverage-6.4.tar.gz", hash = "sha256:727dafd7f67a6e1cad808dc884bd9c5a2f6ef1f8f6d2f22b37b96cb0080d4f49"},
+]
+ddt = [
+    {file = "ddt-1.5.0-py2.py3-none-any.whl", hash = "sha256:78976df724bbf70e8f8c488094184fd778ce3212deb0070481b4db44d5e0fb38"},
+    {file = "ddt-1.5.0.tar.gz", hash = "sha256:daad6bc5fc7619e5aa7eed6c394e05bf82946160a13e5df2e26de176cbaf347e"},
 ]
 flask = [
     {file = "Flask-2.1.2-py3-none-any.whl", hash = "sha256:fad5b446feb0d6db6aec0c3184d16a8c1f6c3e464b511649c8918a9be100b4fe"},
