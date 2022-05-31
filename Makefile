@@ -1,5 +1,13 @@
 .PHONY: start stop build sh logs restart config test lint
 
+# \
+!ifndef 0 # \
+test_env="UPLOAD_FOLDER=$$TEST_UPLOAD_FOLDER" # \
+!else
+test_env=UPLOAD_FOLDER=\$$TEST_UPLOAD_FOLDER
+# \
+!endif
+
 container=pdf_decryptor
 
 # start all the containers
@@ -30,7 +38,7 @@ config:
 	docker-compose config
 
 test:
-	docker-compose exec -T $(container) /bin/sh -c "poetry run nose2 -v"
+	docker-compose exec -T $(container) /bin/sh -c "$(test_env) poetry run nose2 -v"
 
 # lint code
 lint:
