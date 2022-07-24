@@ -11,7 +11,6 @@ class TestQpdf(unittest.TestCase):
     test_output = os.path.join(config.UPLOAD_FOLDER, "test_decrypted.pdf")
 
     def setUp(self):
-
         if os.path.exists(self.test_output):
             os.remove(self.test_output)
 

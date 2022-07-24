@@ -18,7 +18,7 @@ class TestDecrypt(TestClientMixin, TemplateRenderMixin, AppTestCase):
         _assert_bad_request(r)
 
     def test_decrypt_only_pdf_can_be_uploaded(self):
-        payload = {"file": (io.BytesIO(b"abcd"), "test.pdf")}
+        payload = {"file": (io.BytesIO(b"abcd"), "test2.pdf")}
         r = self.client.post("/decrypt/", data=payload)
 
         AssertThat(r.status_code).IsEqualTo(302)
