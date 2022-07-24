@@ -3,7 +3,7 @@ import os
 from flask import current_app, redirect, request, url_for
 from werkzeug.utils import secure_filename
 
-from pdf_decryptor.lib import pdf
+from pdf_decryptor.lib import pdf, qpdf
 from pdf_decryptor.server.blueprints import create_blueprint
 
 blueprint = create_blueprint("decrypt", __name__)
@@ -24,7 +24,12 @@ def decrypt():
     if not pdf.allowed_extension(file.filename):
         return bad_request
 
+    if "password" not in request.form or request.form["password"] == "":
+        return bad_request
+
     filename = secure_filename(file.filename)
     file.save(os.path.join(current_app.config["UPLOAD_FOLDER"], filename))
+
+    qpdf.decrypt(filename, request.form["password"])
 
     return redirect(url_for("main.main"))

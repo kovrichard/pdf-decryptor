@@ -3,6 +3,7 @@
 {% block content %}
 <form method="POST" action="{{ url_for('decrypt.decrypt') }}" enctype="multipart/form-data">
     <input type="file" name="file">
+    <input type="text" name="password">
     <input type="submit" value="Decrypt">
 </form>
 {% endblock %}
