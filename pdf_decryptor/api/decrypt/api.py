@@ -1,6 +1,6 @@
 import os
 
-from flask import current_app, redirect, request, url_for
+from flask import current_app, request, send_file
 from werkzeug.utils import secure_filename
 
 from pdf_decryptor.lib import pdf, qpdf
@@ -28,8 +28,12 @@ def decrypt():
         return bad_request
 
     filename = secure_filename(file.filename)
-    file.save(os.path.join(current_app.config["UPLOAD_FOLDER"], filename))
+    filename = os.path.join(current_app.config["UPLOAD_FOLDER"], filename)
+    file.save(filename)
 
     qpdf.decrypt(filename, request.form["password"])
 
-    return redirect(url_for("main.main"))
+    return send_file(
+        f"{os.path.splitext(filename)[0]}_decrypted.pdf",
+        mimetype="application/pdf",
+    )
