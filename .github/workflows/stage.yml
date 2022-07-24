@@ -6,7 +6,7 @@ on:
 
 env:
   FLASK_ENV: production
-  UPLOAD_FOLDER: ${{env.GITHUB_WORKSPACE}}/tests/uploads/
+  UPLOAD_FOLDER: ${{ github.workspace }}/tests/uploads/
 
 jobs:
   build:
