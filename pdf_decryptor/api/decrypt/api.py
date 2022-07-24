@@ -36,4 +36,5 @@ def decrypt():
     return send_file(
         f"{os.path.splitext(filename)[0]}_decrypted.pdf",
         mimetype="application/pdf",
+        as_attachment=True,
     )
