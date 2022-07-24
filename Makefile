@@ -29,6 +29,9 @@ build:
 sh:
 	docker-compose exec $(container) /bin/sh
 
+tsh:
+	docker-compose exec $(container) /bin/sh -c "$(test_env) sh"
+
 # check console output
 logs:
 	docker-compose logs -f
