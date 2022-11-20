@@ -4,8 +4,8 @@ RUN apk update && apk upgrade
 RUN apk add --no-cache qpdf && \
     apk add --no-cache --virtual .build-deps curl gcc musl-dev
 
-RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python && \
-    ln -s /root/.poetry/bin/poetry /usr/local/bin/poetry
+RUN curl -sSL https://install.python-poetry.org | python && \
+    ln -s /root/.local/bin/poetry /usr/local/bin/poetry
 
 RUN mkdir -p /usr/src/app/
 COPY ./ ./usr/src/app/
