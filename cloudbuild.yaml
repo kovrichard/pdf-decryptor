@@ -2,8 +2,7 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: [
             'build',
-            '-t', 'gcr.io/pdfdecryptor/pdfdecryptor:latest', 
-            '--target', 'final', '.'
+            '-t', 'gcr.io/pdfdecryptor/pdfdecryptor:latest', '.'
           ]
 images: ['gcr.io/pdfdecryptor/pdfdecryptor:latest']
 logsBucket: 'gs://pdfdecryptor_cloudbuild_logs'
