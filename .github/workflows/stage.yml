@@ -51,3 +51,16 @@ jobs:
 
       - name: Run tests
         run: poetry run nose2 -v
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+      
+      - name: Set up gcloud Cloud SDK environment
+        uses: google-github-actions/setup-gcloud@v1
+      
+      - name: Trigger Google Cloud Build
+        run: |
+          export CLOUDSDK_CORE_DISABLE_PROMPTS=1
+          gcloud beta builds triggers run ${{ secrets.STAGE_TRIGGER_ID }} --tag=${{ github.event.release.tag_name }}
