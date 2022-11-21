@@ -1,7 +1,7 @@
 FROM python:3.10.4-alpine3.16 as base
 
 RUN apk update && apk upgrade
-RUN apk add --no-cache qpdf && \
+RUN apk add --no-cache qpdf yarn && \
     apk add --no-cache --virtual .build-deps curl gcc musl-dev
 
 RUN curl -sSL https://install.python-poetry.org | python && \

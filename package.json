@@ -1,0 +1,13 @@
+{
+  "name": "pdf-decryptor",
+  "version": "1.0.0",
+  "description": "App to remove password from pdf files",
+  "main": "index.js",
+  "repository": "https://github.com/kovrichard/pdf-decryptor",
+  "author": "Richard Kovacs <richardkovacs.it@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "tailwindcss": "^3.2.4"
+  }
+}
