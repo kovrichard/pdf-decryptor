@@ -1,9 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
-<form method="POST" action="{{ url_for('decrypt.decrypt') }}" enctype="multipart/form-data">
-    <input type="file" name="file">
-    <input type="text" name="password">
-    <input type="submit" value="Decrypt">
-</form>
+<header>
+    <p>PDF Decryptor</p>
+</header>
+<main>
+    <div class="large-desc">
+        <p class="large-text">Simple</p>
+        <p class="smaller-text">Free forever</p>
+    </div>
+    <form method="POST" action="{{ url_for('decrypt.decrypt') }}" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <input type="text" name="password">
+        <input type="submit" value="Decrypt">
+    </form>
+</main>
 {% endblock %}
