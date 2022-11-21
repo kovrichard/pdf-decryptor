@@ -6,7 +6,9 @@ services:
       FLASK_APP: pdf_decryptor.server.factory:create_app
       UPLOAD_FOLDER: /usr/src/app/uploads/
       TEST_UPLOAD_FOLDER: /usr/src/app/tests/uploads/
-    build: ./
+    build: 
+      context: ./
+      target: test
     image: pdf_decryptor
     working_dir: /usr/src/app
     volumes:
