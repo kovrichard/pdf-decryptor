@@ -14,7 +14,7 @@ WORKDIR /usr/src/app/
 FROM base AS final
 
 RUN poetry export -f requirements.txt > requirements.txt && \
-    pip install -r requirements.txt && apk del build-deps && rm -rf /root/.poetry /root/.cache
+    pip install -r requirements.txt && apk del .build-deps && rm -rf /root/.poetry /root/.cache
 
 CMD gunicorn --bind :$PORT --workers 1 --threads 8 --timeout 0 "pdf_decryptor.server.factory:create_app()"
 
