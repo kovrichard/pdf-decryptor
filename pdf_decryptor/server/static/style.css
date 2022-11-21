@@ -3,10 +3,6 @@
 @tailwind utilities;
 
 html, body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: black;
     font-family: 'Sono';
 }
 
