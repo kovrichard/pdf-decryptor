@@ -40,8 +40,10 @@ jobs:
       - name: Update and install dependencies
         run: |
           sudo apt-get -y update
-          sudo apt-get -y install curl gcc musl-dev qpdf
+          sudo apt-get -y install curl gcc musl-dev qpdf yarn
           poetry install
+          yarn install
+          yarn tailwindcss -i ./pdf_decryptor/server/static/style.css -o ./pdf_decryptor/server/static/main.css
 
       - name: Run linter
         run: |

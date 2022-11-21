@@ -11,6 +11,9 @@ RUN mkdir -p /usr/src/app/
 COPY ./ ./usr/src/app/
 WORKDIR /usr/src/app/
 
+RUN yarn install && \
+    yarn tailwindcss -i ./pdf_decryptor/server/static/style.css -o ./pdf_decryptor/server/static/main.css
+
 FROM base AS final
 
 RUN poetry export -f requirements.txt > requirements.txt && \
