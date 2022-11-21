@@ -65,6 +65,10 @@ jobs:
           export CLOUDSDK_CORE_DISABLE_PROMPTS=1
           gcloud beta builds triggers run ${{ secrets.STAGE_TRIGGER_ID }} --tag=${{ github.event.release.tag_name }}
       
+      - name: Trigger Google Cloud Run deployment
+        run: |
+          gcloud run deploy pdf-decryptor --image gcr.io/pdfdecryptor/pdfdecryptor --platform managed --region us-central1
+      
       - name: Delete unused containers
         run: |
           gcloud container images list-tags gcr.io/pdfdecryptor/pdfdecryptor --filter="NOT tags:*" --format="get(digest)" > unused_containers.txt
