@@ -1,4 +1,4 @@
-.PHONY: start stop build sh logs restart config test lint
+.PHONY: start stop build sh logs restart config test lint tailwind
 
 # \
 !ifndef 0 # \
@@ -48,3 +48,6 @@ lint:
 	docker-compose exec $(container) poetry run autoflake --remove-all-unused-imports --ignore-init-module-imports --in-place --recursive pdf_decryptor tests
 	docker-compose exec $(container) poetry run isort pdf_decryptor tests
 	docker-compose exec $(container) poetry run black pdf_decryptor tests
+
+tailwind:
+	docker-compose exec $(container) yarn tailwindcss -i ./pdf_decryptor/server/static/style.css -o ./pdf_decryptor/server/static/main.css
