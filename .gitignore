@@ -2,3 +2,4 @@ __pycache__
 .vscode
 *.pdf
 node_modules/
+pdf_decryptor/server/static/main.css

@@ -6,24 +6,6 @@ html, body {
     font-family: 'Sono';
 }
 
-header {
-    margin-top: 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 80%;
-    height: 3rem;
-    margin-bottom: 1rem;
-    border-radius: 1rem;
-    border: 1px solid #262626;
-    background-color: #000000;
-    color: #ffffff;
-}
-
-header:hover, main:hover {
-    background-color: #111111;
-}
-
 main {
     display: flex;
     flex-direction: row;
