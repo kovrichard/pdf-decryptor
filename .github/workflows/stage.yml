@@ -63,7 +63,7 @@ jobs:
       - name: Trigger Google Cloud Build
         run: |
           export CLOUDSDK_CORE_DISABLE_PROMPTS=1
-          gcloud beta builds triggers run ${{ secrets.STAGE_TRIGGER_ID }} --tag=latest
+          gcloud beta builds triggers run ${{ secrets.STAGE_TRIGGER_ID }} --tag=${{ github.event.release.tag_name }}
       
       - name: Trigger Google Cloud Run deployment
         run: |
