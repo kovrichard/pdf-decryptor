@@ -4,10 +4,17 @@
 <header class="flex justify-center items-center my-4 w-4/5 h-12 rounded-2xl border border-solid border-[#262626] text-white hover:bg-[#111111]">
     <p>PDF Decryptor</p>
 </header>
-<main class="flex flex-col justify-center items-center w-4/5 h-[90%] mb-4 rounded-2xl border border-solid border-[#262626] text-white hover:bg-[#111111]">
+<main class="flex flex-col justify-around items-center w-4/5 h-[90%] mb-4 rounded-2xl border border-solid border-[#262626] text-white hover:bg-[#111111]">
     <div class="flex flex-col items-center">
         <p class="text-5xl mb-0">Simple</p>
         <p class="text-4xl text-[#999999]">Free forever</p>
+    </div>
+    <div class="flex-col">
+        <ol class="list-decimal">
+            <li>Choose file</li>
+            <li>Type password</li>
+            <li>Decrypt</li>
+        </ol>
     </div>
     <form method="POST" action="{{ url_for('decrypt.decrypt') }}" enctype="multipart/form-data">
         <input type="file" name="file">
