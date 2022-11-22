@@ -17,9 +17,9 @@
             <li>Decrypt</li>
         </ol>
         <form method="POST" action="{{ url_for('decrypt.decrypt') }}" enctype="multipart/form-data" class="flex flex-col items-center">
-            <input type="file" class="mb-4" name="file">
-            <input type="text" class="mb-4" name="password" placeholder="PDF password here" class="text-black">
-            <button type="submit" class="w-36 text-xl rounded-2xl border border-solid border-[#262626] hover:bg-[#222222]">Decrypt</button>
+            <input type="file" class="mb-4 w-96 border border-solid border-[#262626] rounded-2xl" name="file">
+            <input type="text" class="mb-4 w-96 h-8 text-black border border-solid border-[#262626] text-center rounded-2xl" name="password" placeholder="PDF password here">
+            <button type="submit" class="w-36 h-12 text-xl rounded-3xl border border-solid border-[#262626] hover:bg-[#222222]">Decrypt</button>
         </form>
     </div>
 </main>
