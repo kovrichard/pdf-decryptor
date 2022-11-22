@@ -5,13 +5,13 @@
     <h1 class="text-2xl">PDF Decryptor</h1>
 </header>
 <main class="w-4/5 h-[90%] mb-4 rounded-2xl border border-solid border-[#262626] text-white hover:bg-[#111111]">
-    <div class="flex flex-col justify-around items-center h-[36rem]">
+    <div class="flex flex-col justify-around items-center h-[32rem] sm:h-[36rem]">
         <div class="flex flex-col items-center">
-            <p class="text-5xl mb-4">Simple</p>
-            <p class="text-5xl mb-4">&</p>
-            <p class="text-4xl text-[#999999]">Free forever</p>
+            <p class="text-3xl sm:text-5xl mb-4">Simple</p>
+            <p class="text-3xl sm:text-5xl mb-4">&</p>
+            <p class="text-2xl sm:text-4xl text-[#999999]">Free forever</p>
         </div>
-        <ol class="list-decimal text-2xl pl-[37.14px]">
+        <ol class="list-decimal text-xl sm:text-2xl pl-[37.14px]">
             <li>Choose file</li>
             <li>Type password</li>
             <li>Decrypt</li>
@@ -19,7 +19,7 @@
         <form method="POST" action="{{ url_for('decrypt.decrypt') }}" enctype="multipart/form-data" class="flex flex-col items-center">
             <input type="file" class="mb-4 w-4/5 sm:w-96 border border-solid border-[#262626] rounded-2xl" name="file" required>
             <input type="text" class="mb-4 w-4/5 sm:w-96 h-8 text-black border border-solid border-[#262626] text-center rounded-2xl" name="password" placeholder="PDF password here" required>
-            <button type="submit" class="w-36 h-12 text-xl rounded-3xl border border-solid border-[#262626] hover:bg-[#222222]">Decrypt</button>
+            <button type="submit" class="w-36 h-10 sm:h-12 text-lg sm:text-xl rounded-3xl border border-solid border-[#262626] hover:bg-[#222222]">Decrypt</button>
         </form>
         <div class="text-lg">As simple as that</div>
     </div>
