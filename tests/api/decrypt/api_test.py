@@ -1,10 +1,12 @@
 import io
 
+from ddt import data, ddt
 from truth.truth import AssertThat
 
 from tests import AppTestCase, TemplateRenderMixin, TestClientMixin
 
 
+@ddt
 class TestDecrypt(TestClientMixin, TemplateRenderMixin, AppTestCase):
     def test_decrypt_file_should_be_in_request(self):
         r = self.client.post("/decrypt/")
@@ -53,10 +55,11 @@ class TestDecrypt(TestClientMixin, TemplateRenderMixin, AppTestCase):
 
         _assert_bad_request(r, "Missing password")
 
-    def test_decrypt_returns_cors_headers(self):
+    @data("http://localhost:4200", "https://pdfdecryptor.vercel.app")
+    def test_decrypt_returns_cors_headers(self, origin: str) -> None:
         r = self.client.post(
             "/decrypt/",
-            headers={"Origin": "http://localhost:4200"},
+            headers={"Origin": origin},
         )
 
         AssertThat(self.app.config.get("CORS_DOMAINS")).Contains(

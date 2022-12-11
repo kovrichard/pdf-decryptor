@@ -6,7 +6,7 @@ services:
       FLASK_APP: pdf_decryptor.server.factory:create_app
       UPLOAD_FOLDER: /usr/src/app/uploads/
       TEST_UPLOAD_FOLDER: /usr/src/app/tests/uploads/
-      CORS_DOMAINS: "[\"http://localhost:4200\"]"
+      CORS_DOMAINS: "[\"http://localhost:4200\",\"https://pdfdecryptor.vercel.app\"]"
     build: 
       context: ./
       target: test

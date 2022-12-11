@@ -7,6 +7,7 @@ on:
 env:
   FLASK_ENV: production
   UPLOAD_FOLDER: ${{ github.workspace }}/tests/uploads/
+  CORS_DOMAINS: "[\"http://localhost:4200\",\"https://pdfdecryptor.vercel.app\"]"
 
 jobs:
   build:
