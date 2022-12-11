@@ -53,6 +53,16 @@ class TestDecrypt(TestClientMixin, TemplateRenderMixin, AppTestCase):
 
         _assert_bad_request(r, "Missing password")
 
+    def test_decrypt_returns_cors_headers(self):
+        r = self.client.post(
+            "/decrypt/",
+            headers={"Origin": "http://localhost:4200"},
+        )
+
+        AssertThat(self.app.config.get("CORS_DOMAINS")).Contains(
+            r.headers["Access-Control-Allow-Origin"]
+        )
+
 
 def _assert_bad_request(msg, response="NOK"):
     AssertThat(msg.status_code).IsEqualTo(400)
