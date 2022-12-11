@@ -11,21 +11,19 @@ blueprint = create_blueprint("decrypt", __name__)
 
 @blueprint.post("/")
 def decrypt():
-    bad_request = {"statusCode": 400, "message": "NOK"}
-
     if "file" not in request.files:
-        return bad_request
+        return __bad_request("Missing file")
 
     file = request.files["file"]
 
     if file.filename == "":
-        return bad_request
+        return __bad_request("Empty filename")
 
     if not pdf.allowed_extension(file.filename):
-        return bad_request
+        return __bad_request("Extension not allowed")
 
     if "password" not in request.form or request.form["password"] == "":
-        return bad_request
+        return __bad_request("Missing password")
 
     filename = secure_filename(file.filename)
     filename = os.path.join(current_app.config["UPLOAD_FOLDER"], filename)
@@ -38,3 +36,7 @@ def decrypt():
         mimetype="application/pdf",
         as_attachment=True,
     )
+
+
+def __bad_request(message="NOK") -> dict:
+    return message, 400

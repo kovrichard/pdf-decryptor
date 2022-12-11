@@ -9,15 +9,21 @@ class TestDecrypt(TestClientMixin, TemplateRenderMixin, AppTestCase):
     def test_decrypt_file_should_be_in_request(self):
         r = self.client.post("/decrypt/")
 
-        _assert_bad_request(r)
+        _assert_bad_request(r, "Missing file")
 
     def test_decrypt_no_file_is_not_allowed(self):
         payload = {"file": (io.BytesIO(b"abcd"), "")}
         r = self.client.post("/decrypt/", data=payload)
 
-        _assert_bad_request(r)
+        _assert_bad_request(r, "Empty filename")
 
-    def test_decrypt_only_pdf_can_be_uploaded(self):
+    def test_decrypt_only_pdf_extension_is_allowed(self):
+        payload = {"file": (io.BytesIO(b"abcd"), "test.png")}
+        r = self.client.post("/decrypt/", data=payload)
+
+        _assert_bad_request(r, "Extension not allowed")
+
+    def test_decrypt_pdf_can_be_uploaded(self):
         payload = {
             "file": (
                 io.BytesIO(
@@ -39,15 +45,15 @@ class TestDecrypt(TestClientMixin, TemplateRenderMixin, AppTestCase):
         payload = {"file": (io.BytesIO(b"abcd"), "test2.pdf")}
         r = self.client.post("/decrypt/", data=payload)
 
-        _assert_bad_request(r)
+        _assert_bad_request(r, "Missing password")
 
     def test_decrypt_password_cannot_be_empty(self):
         payload = {"file": (io.BytesIO(b"abcd"), "test2.pdf"), "password": ""}
         r = self.client.post("/decrypt/", data=payload)
 
-        _assert_bad_request(r)
+        _assert_bad_request(r, "Missing password")
 
 
-def _assert_bad_request(msg):
-    AssertThat(msg.json["statusCode"]).IsEqualTo(400)
-    AssertThat(msg.json["message"]).IsEqualTo("NOK")
+def _assert_bad_request(msg, response="NOK"):
+    AssertThat(msg.status_code).IsEqualTo(400)
+    AssertThat(msg.get_data().decode()).IsEqualTo(response)
