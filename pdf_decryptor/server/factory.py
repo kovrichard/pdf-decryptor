@@ -2,7 +2,6 @@ from flask import Flask
 from flask_cors import CORS
 
 from pdf_decryptor.api.decrypt.api import blueprint as decrypt_bp
-from pdf_decryptor.api.main.api import blueprint as main_bp
 
 
 def create_app():
@@ -13,7 +12,6 @@ def create_app():
 
     __configure_cors(app)
 
-    app.register_blueprint(main_bp, url_prefix="/")
     app.register_blueprint(decrypt_bp, url_prefix="/decrypt")
 
     return app
