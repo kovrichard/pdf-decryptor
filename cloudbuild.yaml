@@ -8,3 +8,5 @@ steps:
           ]
 images: ['gcr.io/pdfdecryptor/pdfdecryptor:latest']
 logsBucket: 'gs://pdfdecryptor_cloudbuild_logs'
+settings:
+  machineType: 'E2_MEDIUM'
